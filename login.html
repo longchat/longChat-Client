@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>login</title>
+    <script type="text/javascript" src="./dist/asset/js/jquery-3.0.0.js"></script>
+</head>
+
+<body>
+    <div>
+        UserName:
+        <input id="username" type="text" name="username"> Password:
+        <input id="password" type="password" name="password">
+        <button id="login">login</button>
+    </div>
+    <script type="text/javascript">
+    $("#login").bind("click", function() {
+        $.ajax({
+        	url: "/users",
+            contentType: 'application/json; charset=UTF-8',
+            dataType: 'json',
+            method: 'POST',
+            data: {
+                UserName: $("username").val(),
+                Password: $('password').val()
+            }
+        }).done(function(data) {
+            if (data.StatusCode == 0){
+            	 window.location = "chat.html";
+            } 
+        });
+    });
+    </script>
+</body>
+
+</html>
