@@ -14,16 +14,17 @@
         <button id="login">login</button>
     </div>
     <script type="text/javascript">
+
     $("#login").bind("click", function() {
         $.ajax({
-        	url: "/users",
+        	url: "/login",
             contentType: 'application/json; charset=UTF-8',
             dataType: 'json',
             method: 'POST',
-            data: {
-                UserName: $("username").val(),
-                Password: $('password').val()
-            }
+            data: JSON.stringify( {
+                UserName: $("#username").val(),
+                Password: $('#password').val()
+            })
         }).done(function(data) {
             if (data.StatusCode == 0){
             	 window.location = "chat.html";

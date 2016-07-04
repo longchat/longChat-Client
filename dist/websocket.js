@@ -1,7 +1,7 @@
 var socket;
  
 $("#connect").click(function(event){
-    socket = new WebSocket("ws://127.0.0.1:9090/websocket");
+    socket = new WebSocket("ws://127.0.0.1:9091/websocket");
  
     socket.onopen = function(){
         alert("Socket has been opened");
