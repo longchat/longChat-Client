@@ -13,22 +13,29 @@
         <input id="password" type="password" name="password">
         <button id="login">login</button>
     </div>
+    <div style="margin-top:15px;">
+        <input type="button" id="connect" value="websocket connect" />
+        <input type="button" id="send" value="websocket send" />
+        <input type="button" id="close" value="websocket close" />
+    </div>
+    <script type="text/javascript" src="./dist/websocket.js"></script>
     <script type="text/javascript">
-
     $("#login").bind("click", function() {
         $.ajax({
-        	url: "/login",
+            url: "/login",
             contentType: 'application/json; charset=UTF-8',
             dataType: 'json',
             method: 'POST',
-            data: JSON.stringify( {
+            data: JSON.stringify({
                 UserName: $("#username").val(),
                 Password: $('#password').val()
             })
         }).done(function(data) {
-            if (data.StatusCode == 0){
-            	 window.location = "chat.html";
-            } 
+            if (data.StatusCode == 0) {
+                //window.location = "chat.html";
+                alert(data.Data.User.Id);
+                window.token = data.Data.Token
+            }
         });
     });
     </script>
