@@ -5,7 +5,6 @@ $("#connect").click(function(event){
  
     socket.onopen = function(){
         alert("Socket has been opened");
-        socket.send(window.token)
     }
  
     socket.onmessage = function(msg){
