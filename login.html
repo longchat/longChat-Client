@@ -34,7 +34,7 @@
             if (data.StatusCode == 0) {
                 //window.location = "chat.html";
                 alert(data.Data.User.Id);
-                window.token = data.Data.Token
+                window.UserId = data.Data.User.Id
             }
         });
     });

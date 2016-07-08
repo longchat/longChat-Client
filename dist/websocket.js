@@ -17,7 +17,8 @@ $("#connect").click(function(event){
 });
  
 $("#send").click(function(event){
-    socket.send("sending data to server!");
+    var data = {Id:"0",From:window.UserId,GroupId:"1",Content:"hello",Type:"msg"}
+    socket.send("2"+JSON.stringify(data));
 });
  
 $("#close").click(function(event){
