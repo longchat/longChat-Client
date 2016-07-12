@@ -8,7 +8,9 @@ $("#connect").click(function(event){
     }
  
     socket.onmessage = function(msg){
-        alert(msg.data);
+        var old = $("#content").val()
+        var d = eval("("+msg.data+")");
+        $("#content").val(old +"\r\n"+ d.From+" :"+d.Content)
     }
  
     socket.onclose = function() {
@@ -17,7 +19,7 @@ $("#connect").click(function(event){
 });
  
 $("#send").click(function(event){
-    var data = {Id:"0",From:window.UserId,GroupId:"1",Content:"hello",Type:"msg"}
+    var data = {Id:"0",From:window.UserId,GroupId:"1",Content:$("#input").val(),Type:"msg"}
     socket.send("2"+JSON.stringify(data));
 });
  
