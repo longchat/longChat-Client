@@ -4,6 +4,23 @@
 <head>
     <title>login</title>
     <script type="text/javascript" src="./dist/asset/js/jquery-3.0.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="./dist/asset/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./dist/asset/css/amazeui.css">
+    <style type="text/css">
+    [class*="am-u-"] + [class*="am-u-"]:last-child {
+        float: left;
+    }
+    
+    .memberlist {
+        display: inline-block;
+        position: relative;
+    }
+    
+    .text {
+        width: 100%;
+        height: 20rem;
+    }
+    </style>
 </head>
 
 <body>
@@ -21,8 +38,15 @@
     <div>
         <input type="text" id="input">
     </div>
-    <div>
-        <textarea id="content" style="width:50%;height:20rem;"></textarea>
+    <div class="am-g">
+        <div class="am-u-sm-6">
+            <textarea id="content" class="text"></textarea>
+        </div>
+        <div class="am-u-sm-4">
+            <ul class="memberlist">
+                <li>longxboy</li>
+            </ul>
+        </div>
     </div>
     <script type="text/javascript" src="./dist/websocket.js"></script>
     <script type="text/javascript">

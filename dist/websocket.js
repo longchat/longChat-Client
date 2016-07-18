@@ -26,3 +26,5 @@ $("#send").click(function(event){
 $("#close").click(function(event){
     socket.close();
 })
+
+
