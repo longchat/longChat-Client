@@ -51,7 +51,7 @@
     <script type="text/javascript">
     var socket;
     $("#connect").click(function(event) {
-        socket = new WebSocket("ws://127.0.0.1:9093/websocket");
+        socket = new WebSocket("ws://127.0.0.1:9095/websocket");
 
         socket.onopen = function() {
             alert("Socket has been opened");
@@ -92,12 +92,11 @@
     $("#close").click(function(event) {
         socket.close();
     })
-
     $("#sendprivate").click(function(event) {
         var data = {
             Id: "0",
             From: window.UserId,
-            To: "1468291886745000100",
+            To: "1467357794367000300",
             GroupId: "0",
             Content: $("#input").val(),
             Type: "msg"
