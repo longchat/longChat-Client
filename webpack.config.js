@@ -52,8 +52,12 @@ module.exports = {
         host: 'localhost',
         port: 8888,
         proxy: {
-            '/pic/*': {
-                target: 'http://192.168.5.32:8080',
+            '/login': {
+                target: 'http://127.0.0.1:9090',
+                secure: false,
+            },
+	    '/websocket': {
+                target: 'http://127.0.0.1:9090',
                 secure: false,
             }
         }
