@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="template">
         <router-view>
         </router-view>
     </div>
@@ -14,5 +14,9 @@ export default {
 </script>
 
 <style>
-
+.template{
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>

@@ -9,6 +9,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+goog.exportSymbol('proto.protoc.GroupReq', null, global);
+goog.exportSymbol('proto.protoc.GroupReq.Group', null, global);
 goog.exportSymbol('proto.protoc.MessageReq', null, global);
 goog.exportSymbol('proto.protoc.MessageReq.Message', null, global);
 goog.exportSymbol('proto.protoc.MessageReq.Message.ContentType', null, global);
@@ -238,9 +240,9 @@ proto.protoc.MessageReq.Message.prototype.toObject = function(opt_includeInstanc
  */
 proto.protoc.MessageReq.Message.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: msg.getId(),
-    from: msg.getFrom(),
-    to: msg.getTo(),
+    id: msg.getId_asB64(),
+    from: msg.getFrom_asB64(),
+    to: msg.getTo_asB64(),
     content: msg.getContent(),
     type: msg.getType(),
     isgroupmessage: msg.getIsgroupmessage()
@@ -281,15 +283,15 @@ proto.protoc.MessageReq.Message.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setFrom(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setTo(value);
       break;
     case 4:
@@ -342,23 +344,23 @@ proto.protoc.MessageReq.Message.prototype.serializeBinary = function() {
  */
 proto.protoc.MessageReq.Message.prototype.serializeBinaryToWriter = function (writer) {
   var f = undefined;
-  f = this.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = this.getId_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       1,
       f
     );
   }
-  f = this.getFrom();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = this.getFrom_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       2,
       f
     );
   }
-  f = this.getTo();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = this.getTo_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       3,
       f
     );
@@ -397,45 +399,117 @@ proto.protoc.MessageReq.Message.prototype.cloneMessage = function() {
 
 
 /**
- * optional int64 Id = 1;
- * @return {number}
+ * optional bytes Id = 1;
+ * @return {!(string|Uint8Array)}
  */
 proto.protoc.MessageReq.Message.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 1, 0));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 1, ""));
 };
 
 
-/** @param {number} value  */
+/**
+ * optional bytes Id = 1;
+ * This is a type-conversion wrapper around `getId()`
+ * @return {string}
+ */
+proto.protoc.MessageReq.Message.prototype.getId_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getId()));
+};
+
+
+/**
+ * optional bytes Id = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getId()`
+ * @return {!Uint8Array}
+ */
+proto.protoc.MessageReq.Message.prototype.getId_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getId()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
 proto.protoc.MessageReq.Message.prototype.setId = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
 
 /**
- * optional int64 From = 2;
- * @return {number}
+ * optional bytes From = 2;
+ * @return {!(string|Uint8Array)}
  */
 proto.protoc.MessageReq.Message.prototype.getFrom = function() {
-  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 2, 0));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 2, ""));
 };
 
 
-/** @param {number} value  */
+/**
+ * optional bytes From = 2;
+ * This is a type-conversion wrapper around `getFrom()`
+ * @return {string}
+ */
+proto.protoc.MessageReq.Message.prototype.getFrom_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getFrom()));
+};
+
+
+/**
+ * optional bytes From = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getFrom()`
+ * @return {!Uint8Array}
+ */
+proto.protoc.MessageReq.Message.prototype.getFrom_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getFrom()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
 proto.protoc.MessageReq.Message.prototype.setFrom = function(value) {
   jspb.Message.setField(this, 2, value);
 };
 
 
 /**
- * optional int64 To = 3;
- * @return {number}
+ * optional bytes To = 3;
+ * @return {!(string|Uint8Array)}
  */
 proto.protoc.MessageReq.Message.prototype.getTo = function() {
-  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 3, 0));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 3, ""));
 };
 
 
-/** @param {number} value  */
+/**
+ * optional bytes To = 3;
+ * This is a type-conversion wrapper around `getTo()`
+ * @return {string}
+ */
+proto.protoc.MessageReq.Message.prototype.getTo_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getTo()));
+};
+
+
+/**
+ * optional bytes To = 3;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getTo()`
+ * @return {!Uint8Array}
+ */
+proto.protoc.MessageReq.Message.prototype.getTo_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getTo()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
 proto.protoc.MessageReq.Message.prototype.setTo = function(value) {
   jspb.Message.setField(this, 3, value);
 };
@@ -722,7 +796,7 @@ proto.protoc.OnlineReq.Item.prototype.toObject = function(opt_includeInstance) {
  */
 proto.protoc.OnlineReq.Item.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: msg.getId(),
+    id: msg.getId_asB64(),
     isonline: msg.getIsonline(),
     isgroup: msg.getIsgroup()
   };
@@ -762,7 +836,7 @@ proto.protoc.OnlineReq.Item.deserializeBinaryFromReader = function(msg, reader) 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setId(value);
       break;
     case 2:
@@ -811,9 +885,9 @@ proto.protoc.OnlineReq.Item.prototype.serializeBinary = function() {
  */
 proto.protoc.OnlineReq.Item.prototype.serializeBinaryToWriter = function (writer) {
   var f = undefined;
-  f = this.getId();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = this.getId_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       1,
       f
     );
@@ -845,15 +919,39 @@ proto.protoc.OnlineReq.Item.prototype.cloneMessage = function() {
 
 
 /**
- * optional int64 Id = 1;
- * @return {number}
+ * optional bytes Id = 1;
+ * @return {!(string|Uint8Array)}
  */
 proto.protoc.OnlineReq.Item.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 1, 0));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 1, ""));
 };
 
 
-/** @param {number} value  */
+/**
+ * optional bytes Id = 1;
+ * This is a type-conversion wrapper around `getId()`
+ * @return {string}
+ */
+proto.protoc.OnlineReq.Item.prototype.getId_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getId()));
+};
+
+
+/**
+ * optional bytes Id = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getId()`
+ * @return {!Uint8Array}
+ */
+proto.protoc.OnlineReq.Item.prototype.getId_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getId()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
 proto.protoc.OnlineReq.Item.prototype.setId = function(value) {
   jspb.Message.setField(this, 1, value);
 };
@@ -890,6 +988,513 @@ proto.protoc.OnlineReq.Item.prototype.getIsgroup = function() {
 /** @param {boolean} value  */
 proto.protoc.OnlineReq.Item.prototype.setIsgroup = function(value) {
   jspb.Message.setField(this, 3, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.protoc.GroupReq = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.protoc.GroupReq.repeatedFields_, null);
+};
+goog.inherits(proto.protoc.GroupReq, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.protoc.GroupReq.displayName = 'proto.protoc.GroupReq';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.protoc.GroupReq.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.protoc.GroupReq.prototype.toObject = function(opt_includeInstance) {
+  return proto.protoc.GroupReq.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.protoc.GroupReq} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.protoc.GroupReq.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    groupsList: jspb.Message.toObjectList(msg.getGroupsList(),
+    proto.protoc.GroupReq.Group.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.protoc.GroupReq}
+ */
+proto.protoc.GroupReq.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.protoc.GroupReq;
+  return proto.protoc.GroupReq.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.protoc.GroupReq} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.protoc.GroupReq}
+ */
+proto.protoc.GroupReq.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.protoc.GroupReq.Group;
+      reader.readMessage(value,proto.protoc.GroupReq.Group.deserializeBinaryFromReader);
+      msg.getGroupsList().push(value);
+      msg.setGroupsList(msg.getGroupsList());
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.protoc.GroupReq} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.protoc.GroupReq.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.protoc.GroupReq.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.protoc.GroupReq.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getGroupsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.protoc.GroupReq.Group.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.protoc.GroupReq} The clone.
+ */
+proto.protoc.GroupReq.prototype.cloneMessage = function() {
+  return /** @type {!proto.protoc.GroupReq} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * repeated Group Groups = 1;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * @return {!Array.<!proto.protoc.GroupReq.Group>}
+ */
+proto.protoc.GroupReq.prototype.getGroupsList = function() {
+  return /** @type{!Array.<!proto.protoc.GroupReq.Group>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.protoc.GroupReq.Group, 1));
+};
+
+
+/** @param {Array.<!proto.protoc.GroupReq.Group>|undefined} value  */
+proto.protoc.GroupReq.prototype.setGroupsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+proto.protoc.GroupReq.prototype.clearGroupsList = function() {
+  this.setGroupsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.protoc.GroupReq.Group = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.protoc.GroupReq.Group.repeatedFields_, null);
+};
+goog.inherits(proto.protoc.GroupReq.Group, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.protoc.GroupReq.Group.displayName = 'proto.protoc.GroupReq.Group';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.protoc.GroupReq.Group.repeatedFields_ = [4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.protoc.GroupReq.Group.prototype.toObject = function(opt_includeInstance) {
+  return proto.protoc.GroupReq.Group.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.protoc.GroupReq.Group} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.protoc.GroupReq.Group.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: msg.getId_asB64(),
+    title: msg.getTitle(),
+    logo: msg.getLogo(),
+    membersList: msg.getMembersList_asB64(),
+    introduce: msg.getIntroduce()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.protoc.GroupReq.Group}
+ */
+proto.protoc.GroupReq.Group.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.protoc.GroupReq.Group;
+  return proto.protoc.GroupReq.Group.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.protoc.GroupReq.Group} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.protoc.GroupReq.Group}
+ */
+proto.protoc.GroupReq.Group.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTitle(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLogo(value);
+      break;
+    case 4:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.getMembersList().push(value);
+      msg.setMembersList(msg.getMembersList());
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIntroduce(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.protoc.GroupReq.Group} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.protoc.GroupReq.Group.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.protoc.GroupReq.Group.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.protoc.GroupReq.Group.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getId_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = this.getTitle();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = this.getLogo();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = this.getMembersList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      4,
+      f
+    );
+  }
+  f = this.getIntroduce();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.protoc.GroupReq.Group} The clone.
+ */
+proto.protoc.GroupReq.Group.prototype.cloneMessage = function() {
+  return /** @type {!proto.protoc.GroupReq.Group} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional bytes Id = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.protoc.GroupReq.Group.prototype.getId = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 1, ""));
+};
+
+
+/**
+ * optional bytes Id = 1;
+ * This is a type-conversion wrapper around `getId()`
+ * @return {string}
+ */
+proto.protoc.GroupReq.Group.prototype.getId_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getId()));
+};
+
+
+/**
+ * optional bytes Id = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getId()`
+ * @return {!Uint8Array}
+ */
+proto.protoc.GroupReq.Group.prototype.getId_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getId()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
+proto.protoc.GroupReq.Group.prototype.setId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string Title = 2;
+ * @return {string}
+ */
+proto.protoc.GroupReq.Group.prototype.getTitle = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 2, ""));
+};
+
+
+/** @param {string} value  */
+proto.protoc.GroupReq.Group.prototype.setTitle = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string Logo = 3;
+ * @return {string}
+ */
+proto.protoc.GroupReq.Group.prototype.getLogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 3, ""));
+};
+
+
+/** @param {string} value  */
+proto.protoc.GroupReq.Group.prototype.setLogo = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * repeated bytes Members = 4;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * @return {!(Array<!Uint8Array>|Array<string>)}
+ */
+proto.protoc.GroupReq.Group.prototype.getMembersList = function() {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getField(this, 4));
+};
+
+
+/**
+ * repeated bytes Members = 4;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * This is a type-conversion wrapper around `getMembersList()`
+ * @return {!Array.<string>}
+ */
+proto.protoc.GroupReq.Group.prototype.getMembersList_asB64 = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.bytesListAsB64(
+      this.getMembersList()));
+};
+
+
+/**
+ * repeated bytes Members = 4;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getMembersList()`
+ * @return {!Array.<!Uint8Array>}
+ */
+proto.protoc.GroupReq.Group.prototype.getMembersList_asU8 = function() {
+  return /** @type {!Array.<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+      this.getMembersList()));
+};
+
+
+/** @param {!(Array<!Uint8Array>|Array<string>)} value  */
+proto.protoc.GroupReq.Group.prototype.setMembersList = function(value) {
+  jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * optional string Introduce = 5;
+ * @return {string}
+ */
+proto.protoc.GroupReq.Group.prototype.getIntroduce = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 5, ""));
+};
+
+
+/** @param {string} value  */
+proto.protoc.GroupReq.Group.prototype.setIntroduce = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 

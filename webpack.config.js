@@ -55,10 +55,6 @@ module.exports = {
             '/login': {
                 target: 'http://127.0.0.1:9090',
                 secure: false,
-            },
-	    '/websocket': {
-                target: 'http://127.0.0.1:9090',
-                secure: false,
             }
         }
     }

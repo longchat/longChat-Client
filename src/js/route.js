@@ -10,6 +10,10 @@ var router = new vueRouter({
 })
 
 router.map({
+    '/':{
+        name:'index',
+        component:login
+    },
     '/signin': {
     	name: 'login', 
         component: login

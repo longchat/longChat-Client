@@ -19,7 +19,7 @@ export default {
                     .set('ContentType', 'application/json;')
                     .end(function(err, res) {
                         if (res.body.StatusCode == 0) {
-                        	window.UserId = res.body.Data.User.Id
+                        	window.User = res.body.Data.User
                         	router.go({name:'chat'})
                         }else{
                         	alert("您输入的用户民或密码有误！")
