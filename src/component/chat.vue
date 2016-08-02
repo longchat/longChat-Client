@@ -10,6 +10,35 @@ var constant = {
 }
 var socket
 
+
+var to
+var isGroup
+var content
+var ipAddrs
+window.SendMsg = function() {
+    if (to == undefined) {
+        return
+    }
+    console.log("test send!")
+    sendMessage(to, isGroup, content)
+}
+window.SendMsg()
+window.OpenSocket = function() {
+    if (socket == undefined) {
+        return
+    }
+    socket = new WebSocket("ws://" + ipAddrs + "/websocket")
+    socket.binaryType = 'arraybuffer'
+    socket.onopen = function() {
+        console.log("open")
+        socket.close()
+    }
+    socket.onclose = function() {
+        setTimeout('OpenSocket()', 1000)
+        console.log("closed")
+    }
+}
+window.OpenSocket()
 export default {
     data() {
             return {
@@ -19,34 +48,60 @@ export default {
                 group: {},
                 groupMembers: [],
                 member: {},
+                circleSend: false,
+                circleLogin: false,
             }
         },
         methods: {
-            connect: function() {
+            connect: function(circleSend, circleLogin) {
+                this.circleSend = circleSend
+                this.circleLogin = circleLogin
+                ipAddrs = this.ipAddr
                 socket = new WebSocket("ws://" + this.ipAddr + "/websocket")
                 socket.binaryType = 'arraybuffer'
                 socket.onopen = function() {
-                    alert("Socket has been opened")
+                    console.log("open")
+                    if (circleLogin) {
+                        socket.close()
+                    }
                 }
                 var that = this
                 socket.onmessage = function(msg) {
                     var array = new Uint8Array(msg.data)
+                    console.log(array)
                     if (array[0] == constant.messageType.GROUP) {
                         var d = message.GroupReq.deserializeBinary(array.slice(1))
                         var groups = d.getGroupsList()
                         that.group = groups[0]
                         that.groupMembers = groups[0].getMembersList()
                         return
+                    } else if (array[0] == constant.messageType.MESSAGE) {
+                        var d = message.MessageReq.deserializeBinary(array.slice(1))
+                        var msgPb = d.getMessagesList()[0]
+                        var msg = {
+                            From: msgPb.getFrom(),
+                            Content: msgPb.getContent()
+                        }
+                        that.messages.push(msg)
+                        if (msgPb.getIsgroupmessage()) {
+                            to = msgPb.getTo()
+                            isGroup = true
+                        } else {
+                            isGroup = false
+                            to = msgPb.getFrom()
+                        }
+                        content = msg.Content
+                        if (circleSend) {
+                            setTimeout('SendMsg()', 1000)
+                        }
                     }
-                    var d = message.MessageReq.deserializeBinary(array.slice(1))
-                    var msg = {
-                        From: d.getMessagesList()[0].getFrom(),
-                        Content: d.getMessagesList()[0].getContent()
-                    }
-                    that.messages.push(msg)
+
                 }
                 socket.onclose = function() {
-                    alert("Socket has been closed")
+                    console.log("closed")
+                    if (that.circleLogin) {
+                        setTimeout('OpenSocket()', 1000)
+                    }
                 }
             },
             close: function() {
@@ -65,7 +120,6 @@ export default {
 }
 
 function sendMessage(to, isGroup, Content) {
-    console.log("to" + to)
     var mList = new message.MessageReq()
     var msg = new message.MessageReq.Message()
     msg.setTo(to)
@@ -88,8 +142,10 @@ function sendMessage(to, isGroup, Content) {
             <input type="text" v-model="ipAddr">
         </div>
         <div>
-            <button @click="connect">connect</button>
-            <button @click="close">close</button>
+            <button class="chat_btn" @click="connect(false,false)">connect</button>
+            <button class="chat_btn" @click="connect(true,false)">connect&testSend</button>
+            <button class="chat_btn" @click="connect(false,true)">connect&testOpenClose</button>
+            <button class="chat_btn" @click="close">close</button>
         </div>
         <div class="am-g">
             <div class="am-u-sm-8">
@@ -113,3 +169,8 @@ function sendMessage(to, isGroup, Content) {
         </div>
     </div>
 </template>
+<style>
+.chat_btn {
+    margin-left: 1rem;
+}
+</style>

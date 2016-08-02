@@ -43,7 +43,8 @@ module.exports = {
         }
     },
     plugins: [
-        new ExtractTextPlugin("[name].css", { disable: false }), new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
+        new ExtractTextPlugin("[name].css", { disable: false }),
+	// new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
     ],
     // 开启source-map，webpack有多种source-map，在官网文档可以查到
     devtool: '#source-map',
